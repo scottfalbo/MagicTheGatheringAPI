@@ -2,11 +2,11 @@
 // Magic The Gathering Look Up UI
 // ------------------------------------
 
-using MagicTheGatheringAPI.Models;
+using Microsoft.Azure.Cosmos;
 
 namespace MagicTheGatheringAPI;
 
-public interface IProcessor
+public interface IStorageClient
 {
-    Task<List<SetDto>> GetSets();
+    CosmosClient CreateClient();
 }

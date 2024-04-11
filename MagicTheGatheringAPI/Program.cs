@@ -3,6 +3,7 @@
 // ------------------------------------
 
 using MagicTheGatheringAPI;
+using Microsoft.Azure.Cosmos;
 using MtgApiManager.Lib.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,15 @@ builder.Services.AddSingleton(cardService);
 
 var setService = serviceProvider.GetSetService();
 builder.Services.AddSingleton(setService);
+
+var cosmosEndpoint = builder.Configuration["CosmosEndpoint"];
+var cosmosKey = builder.Configuration["CosmosKey"];
+
+builder.Services.AddSingleton<IStorageClient, StorageClient>(x =>
+{
+    var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
+    return new StorageClient(cosmosClient);
+});
 
 builder.Services.AddTransient<IProcessor, Processor>();
 

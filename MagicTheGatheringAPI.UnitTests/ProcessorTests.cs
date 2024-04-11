@@ -24,7 +24,7 @@ public class ProcessorTests
     [TestMethod]
     public async Task GetAllSets_ReturnSetList()
     {
-        var response = await _processor.GetAllSets();
+        var response = await _processor.GetSets();
 
         Assert.IsNotNull(response);
     }

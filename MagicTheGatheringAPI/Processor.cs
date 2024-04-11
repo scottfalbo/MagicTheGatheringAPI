@@ -18,7 +18,7 @@ public class Processor : IProcessor
         _setService = setService;
     }
 
-    public async Task<List<SetDto>> GetAllSets()
+    public async Task<List<SetDto>> GetSets()
     {
         var response = await _setService.AllAsync();
 
