@@ -12,9 +12,13 @@ public record SetDto
 
     public string Code { get; set; }
 
+    public Guid Id { get; set; } = Guid.NewGuid();
+
     public string Name { get; set; }
 
     public bool? OnlineOnly { get; set; }
+
+    public string? PartitionKey { get; set; }
 
     public string ReleaseDate { get; set; }
 
@@ -28,5 +32,14 @@ public record SetDto
         OnlineOnly = set.OnlineOnly;
         ReleaseDate = set.ReleaseDate;
         Type = set.Type;
+    }
+
+    public SetDto()
+    {
+        Block = default!;
+        Code = default!;
+        Name = default!;
+        ReleaseDate = default!;
+        Type = default!;
     }
 }
