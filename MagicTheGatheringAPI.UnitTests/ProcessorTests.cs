@@ -14,14 +14,18 @@ public class ProcessorTests
     public ProcessorTests()
     {
         var serviceProvider = new MtgServiceProvider();
-        var service = serviceProvider.GetCardService();
 
-        _processor = new Processor(service);
+        var cardService = serviceProvider.GetCardService();
+        var setService = serviceProvider.GetSetService();
+
+        _processor = new Processor(cardService, setService);
     }
 
     [TestMethod]
     public async Task GetAllSets_ReturnSetList()
     {
         var response = await _processor.GetAllSets();
+
+        Assert.IsNotNull(response);
     }
 }
