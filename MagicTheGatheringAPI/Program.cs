@@ -1,4 +1,10 @@
+using MtgApiManager.Lib.Service;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var serviceProvider = new MtgServiceProvider();
+var service = serviceProvider.GetCardService();
+builder.Services.AddSingleton(service);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
